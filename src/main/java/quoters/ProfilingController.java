@@ -1,7 +1,8 @@
 package quoters;
 
 public class ProfilingController implements ProfilingControllerMBean {
-    private boolean enabled;
+    // is to be changed in  jvisualvm (plugin MBeans)
+    private boolean enabled = true;
 
     public boolean isEnabled() {
         return enabled;

@@ -37,17 +37,17 @@ public class ProfilingHandlerBeanPostProcessor implements BeanPostProcessor {
             return Proxy.newProxyInstance(beanClass.getClassLoader(), beanClass.getInterfaces(), new InvocationHandler() {
                 @Override
                 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-//                    if (controller.isEnabled()) {
-                        System.out.println("Profiling start");
+                    if (controller.isEnabled()) {
+                        System.out.println("== profiling start");
                         long before = System.nanoTime();
                         Object retVal = method.invoke(bean, args);
                         long after = System.nanoTime();
                         System.out.println(after - before);
-                        System.out.println("Profiling end");
+                        System.out.println("== profiling end");
                         return retVal;
-//                    } else {
-//                        return method.invoke(bean, args);
-//                    }
+                    } else {
+                        return method.invoke(bean, args);
+                    }
                 }
             });
         }
